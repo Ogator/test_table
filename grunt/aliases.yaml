@@ -1,0 +1,44 @@
+default: []
+
+i18n:
+  description: 'Extract UI keys for translation'
+  tasks:
+    - 'i18nextract:ruextract'
+
+lint:
+  description: 'Check javascript for errors'
+  tasks:
+    - 'jshint'
+
+serve:
+  desctiption: 'Serve Development build'
+  tasks:
+    - 'clean:main'
+    - 'wiredep:main'
+    - 'copy:styles'
+    - 'postcss:serve'
+    - 'connect:livereload'
+    - 'watch'
+
+prod:
+  desctiption: 'Production build'
+  tasks:
+    - 'lint'
+    - 'clean:main'
+    - 'wiredep:main'
+    - 'useminPrepare'
+    - 'copy:styles'
+    - 'svgmin'
+    - 'postcss:prod'
+    - 'ngtemplates'
+    - 'concat'
+    - 'ngAnnotate'
+    - 'copy:prod'
+    - 'cdnify:prod'
+    - 'cssmin:generated'
+    - 'uglify:generated'
+    - 'filerev:prod'
+    - 'usemin'
+    - 'htmlmin:prod'
+
+

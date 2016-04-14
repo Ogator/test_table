@@ -1,0 +1,32 @@
+<md-sidenav md-is-locked-open="$mdMedia('gt-sm')" md-component-id="left"
+            class="md-whiteframe-z2 md-sidenav-left">
+  <md-toolbar md-theme="custom" class="md-hue-1 md-whiteframe-z2">
+    <md-button layout="row" layout-align="center center" class="md-toolbar-tools md-warn"
+               href="https://www.google.com">
+      <h1>Клиент</h1>
+    </md-button>
+  </md-toolbar>
+  <md-content class="navi-content">
+    <md-button layout-align="center center" layout-margin="10" ng-repeat="item in navItems" layout="column"
+               class="capitalize navi-button" ng-click="selectNavItem(item)"
+               ui-sref-active="md-warn" ui-sref="{{item.sref}}">
+      <div>
+        <md-icon class="md-icon md-36" md-svg-icon="{{item.icon}}"></md-icon>
+      </div>
+      <div>
+        {{item.title}}
+      </div>
+    </md-button>
+  </md-content>
+</md-sidenav>
+
+<div flex layout="column">
+  <md-toolbar layout="row" layout-align="end center">
+    <md-button hide-gt-sm ng-click="toggleNaviBar()" aria-label="Menu">
+      <md-icon class="md-icon-button" md-svg-icon="menu"></md-icon>
+    </md-button>
+  </md-toolbar>
+  <dash-toolbar></dash-toolbar>
+  <md-content flex layout="row" layout-fill class="page-content" ui-view>
+  </md-content>
+</div>

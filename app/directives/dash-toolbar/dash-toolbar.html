@@ -1,0 +1,13 @@
+<md-toolbar md-theme="custom" md-scroll-shrink ng-if="true" md-shrink-speed-factor="0.25" ng-cloak>
+  <div class="md-toolbar-tools">
+    <h3>
+      <span title="{{title}}">{{title}}</span>
+    </h3>
+    <span flex></span>
+    <div ng-show="actions" ng-repeat="act in actions">
+      <md-button class="toolbar-button" aria-label="{{act.arialabel}}">
+        <md-icon title="" class="md-icon-button" md-svg-icon="{{act.icon}}" ng-click="act.handler()"></md-icon>
+      </md-button>
+    </div>
+  </div>
+</md-toolbar>

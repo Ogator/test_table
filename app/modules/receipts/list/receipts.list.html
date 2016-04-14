@@ -1,0 +1,62 @@
+<md-content layout="column" layout-fill class="dash-content">
+  <div class="dash-filter-bar md-whiteframe-2dp" md-theme="custom" layout="row" layout-sm="column" layout-xs="column" layout-wrap="">
+    <div md-theme="custom" layout="row" layout-sm="column" layout-xs="column" layout-wrap="">
+      <md-input-container class="md-block dash-filter-input">
+        <label>Тип</label>
+        <md-icon md-svg-icon="filter"></md-icon>
+        <md-select ng-model="filters.typeFilter" md-on-close="setFilters()">
+          <md-option ng-repeat="receiptType in receiptTypes" ng-value="receiptType">
+            {{receiptType}}
+          </md-option>
+        </md-select>
+      </md-input-container>
+      <md-datepicker ng-change="setFilters()" ng-model="filters.periodFromFilter" md-placeholder="Период с" class="dash-filter-input-dp"></md-datepicker>
+      <md-datepicker ng-change="setFilters()" ng-model="filters.periodToFilter" md-placeholder="Период по" class="dash-filter-input-dp"></md-datepicker>
+      <md-input-container class="md-icon-float md-block dash-filter-input">
+        <label>Сумма ></label>
+        <md-icon md-svg-icon="cash-100"></md-icon>
+        <input ng-change="setFilters()" name="paymentTotal" type="number" ng-model-on-blur ng-model="filters.paymentTotalFilter" min="0">
+      </md-input-container>
+      <md-input-container class="md-block dash-filter-input">
+        <label>Статус</label>
+        <md-icon md-svg-icon="account-convert"></md-icon>
+        <md-select ng-model="filters.statusFilter" md-on-close="setFilters()">
+          <md-option ng-repeat="statusType in statusTypes" ng-value="statusType">
+            {{statusType}}
+          </md-option>
+        </md-select>
+      </md-input-container>
+    </div>
+    <div md-theme="custom" layout="row" layout-sm="column" layout-xs="column" layout-wrap="">
+      <md-divider></md-divider>
+      <md-button class="md-warn dash-clearfilter-button" ng-click="clearFilters()" ng-disabled="clearFiltersDisabled">Сбросить фильтр</md-button>
+    </div>
+  </div>
+
+  <md-table-container>
+    <table id="receipt-table" md-table ng-model="selectedReceipt" md-progress="promise">
+      <thead class="table-header" md-head md-order="idx" md-on-reorder="onReorder">
+      <tr md-row>
+        <th md-column md-order-by="idx">Номер</th>
+        <th md-column md-order-by="type">Тип Квитанции</th>
+        <th md-column md-order-by="dateFrom">Период с</th>
+        <th md-column md-order-by="dateTo">Период по</th>
+        <th md-column md-order-by="paymentSum">Сумма</th>
+        <th md-column md-order-by="status">Статус</th>
+      </tr>
+      </thead>
+      <tbody md-body>
+      <tr md-row ng-click="showReceipt($index)" ng-repeat="receipt in receipts">
+        <td md-cell>{{receipt.idx}}</td>
+        <td md-cell>{{receipt.type}}</td>
+        <td md-cell>{{receipt.dateFrom | date: 'M.d.yyyy'}}</td>
+        <td md-cell>{{receipt.dateTo | date: 'M.d.yyyy'}}</td>
+        <td md-cell>{{receipt.paymentSum}} руб.</td>
+        <td md-cell>{{receipt.status}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </md-table-container>
+
+  <md-table-pagination md-limit-options="rowOptions" md-label="{{paginationLabels}}" md-limit="query.limit" md-page="query.page" md-total="{{receiptCount}}" md-on-paginate="onPaginate" md-page-select></md-table-pagination>
+</md-content>

@@ -1,0 +1,43 @@
+
+.dash-content {
+  overflow-y: hidden;
+}
+
+.dash-filter-bar {
+  margin: 10px;
+}
+
+.dash-filter-input {
+  margin-top: 23px;
+  margin-right: 20px;
+  margin-left: 20px;
+  margin-bottom: 15px;
+}
+.dash-filter-input-dp {
+  margin-top: 20px;
+  margin-right: 20px;
+  margin-left: 20px;
+  margin-bottom: 15px;
+}
+
+.dash-clearfilter-button {
+  margin-left: 20px;
+  margin-right: 15px;
+}
+
+.table-header {
+  background-color: rgba(122, 122, 122, 0.4);
+}
+table#receipt-table tr:nth-of-type(even) {
+  background-color: rgba(231, 87, 83, 0.16);
+}
+
+.md-datepicker-button.md-icon-button.md-button {
+  margin-left: 0px;
+  margin-right: 0px;
+  padding-left: 0px;
+}
+
+.md-datepicker-input-container {
+  margin-left: 0px!important;
+}
